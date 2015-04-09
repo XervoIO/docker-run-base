@@ -1,2 +1,2 @@
 #!/bin/sh
-exec supervisord
+exec su mop -c supervisord

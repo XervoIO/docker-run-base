@@ -6,7 +6,7 @@ apt-get update
 apt-get install -y supervisor git
 
 # Copy supervisor's base configuration.
-cp /opt/modulus/supervisor.conf /etc/supervisor/conf.d/
+cp /opt/modulus/supervisor.conf /etc/supervisor/supervisor.conf
 
 # Setup supervisor's service.
 mkdir /etc/service/supervisor/
