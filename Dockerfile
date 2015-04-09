@@ -1,4 +1,4 @@
-FROM onmodulus/image-base:1.0.0
+FROM onmodulus/image-base:0.0.1
 
 ADD . /opt/modulus
 
