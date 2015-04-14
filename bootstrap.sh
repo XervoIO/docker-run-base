@@ -12,3 +12,5 @@ cp /opt/modulus/supervisord.conf /etc/supervisor/
 mkdir /etc/service/supervisor/
 cp /opt/modulus/supervisor-service.sh /etc/service/supervisor/run
 chmod +x /etc/service/supervisor/run
+mv /opt/modulus/bin/navi* /opt/modulus/bin/navi
+chmod +x /opt/modulus/bin/navi
