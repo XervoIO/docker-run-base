@@ -18,4 +18,3 @@ mv /opt/modulus/bin/navi* /opt/modulus/bin/navi
 # Make things executable.
 chmod +x /etc/service/supervisor/run
 chmod +x /opt/modulus/bin/navi
-chmod +x /opt/modulus/bin/s3fs
