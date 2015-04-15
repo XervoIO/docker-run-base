@@ -3,7 +3,8 @@ set -e
 set -x
 
 apt-get update
-apt-get install -y supervisor git
+apt-get install -y supervisor git python-setuptools
+easy_install superlance
 
 # Copy supervisor's base configuration.
 cp /opt/modulus/supervisord.conf /etc/supervisor/
