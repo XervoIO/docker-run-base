@@ -30,13 +30,21 @@ wget http://www.imagemagick.org/download/ImageMagick.tar.gz
 tar -xf ImageMagick.tar.gz && mv ImageMagick-* ImageMagick && cd ImageMagick && ./configure && make && sudo make install
 ldconfig /usr/local/lib && rm -rf /opt/ImageMagick*
 
+# Install GraphicsMagick
+cd /opt
+wget http://sourceforge.net/projects/graphicsmagick/files/graphicsmagick/1.3.21/GraphicsMagick-1.3.21.tar.gz
+tar -xf GraphicsMagick-*
+cd GraphicsMagick-*
+./configure && make && make install
+cd /opt && rm -rf cd GraphicsMagick-*
+
 # Install ffmpeg
 cd /opt
 wget http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz
 tar -xf ffmpeg-*
 cd ffmpeg-*
 cp ./* /usr/bin || true #ignore directory warning
-rm -rf /opt/ffmpeg* 
+rm -rf /opt/ffmpeg*
 
 # Clean stuff up that's no longer needed
 apt-get remove build-essential && apt-get purge build-essential
