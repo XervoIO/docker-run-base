@@ -2,8 +2,14 @@
 set -e
 set -x
 
+# Base image sets these based on runtime.
+# Need to set them back for bootstrapping the container.
+TEMP_DIR=/tmp
+TMPDIR=/tmp
+TMP_DIR=/tmp
+
 apt-get update
-apt-get install -y supervisor git python-setuptools build-essential \
+apt-get install -y supervisor python-setuptools build-essential \
   libmagickcore-dev libmagickwand-dev libjpeg8-dev libsqlite-dev \
   libexpat1 libexpat1-dev libicu-dev libpq-dev libcairo2-dev \
   libpango1.0-dev libgif-dev libxml2-dev
@@ -45,6 +51,13 @@ tar -xf ffmpeg-*
 cd ffmpeg-*
 cp ./* /usr/bin || true #ignore directory warning
 rm -rf /opt/ffmpeg*
+
+# Install phantomjs
+cd /opt
+wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2
+tar -xf phantomjs-*
+mv phantomjs-*/bin/phantomjs /usr/bin/phantomjs
+rm -rf phantomjs*
 
 # Clean stuff up that's no longer needed
 apt-get remove build-essential && apt-get purge build-essential
