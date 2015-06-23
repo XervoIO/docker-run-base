@@ -28,7 +28,7 @@ Modulus makes use of [Supervisor](http://supervisord.org/) for process monitorin
 The base run image is not meant to be run directly. It's designed to be inherited by an application specific image, for example the [Node.js run image](https://github.com/onmodulus/docker-run-node).
 
 ```
-FROM: onmodulus/image-run-base:1.0.0
+FROM: onmodulus/docker-run-base:1.0.0
 
 # Customizations
 
