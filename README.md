@@ -1,18 +1,14 @@
-Modulus Base Docker Runtime Image
-=========
+# Modulus Base Docker Runtime Image
+The Modulus images are a set of Docker images designed to run arbitrary applications with a standardized external interface. The Modulus image convention enforces a high degree of security and control required by PaaS environments and might not be suitable for small, more focused, deployments.
 
-The base Docker image for all Modulus runtime images. Extends from
-`onmodulus/image-base`.
-
-## mop user
-All user code is run under mop user/group by the Modulus platform.
+## The mop user
+The [Modulus base image](https://github.com/onmodulus/docker-base) creates a mop user, under which all external software is run. The mop user does not have write access to anywhere on the Docker volume. Instead it can only write to a volume externally mounted from the host system.
 
 ## Volumes
 
 `/mnt`
 
-The volume mounted at `/mnt` requires the follow subdirectories to be created
-by the host system and accessible by the `mop` user/group.
+The volume mounted at `/mnt` requires the follow subdirectories to be created by the host system and accessible by the `mop` user/group.
 
 * `/mnt/tmp` Temporary storage. The TEMP_DIR environment variable is defined to here.
 * `/mnt/home` The mop user's home directory. The HOME environment variable is defined to here.
@@ -22,8 +18,14 @@ by the host system and accessible by the `mop` user/group.
 * `/mnt/app-storage` Persistent storage is mounted here. It's also mounted to /app-storage at runtime.
 * `/mnt/supervisor.conf` The supervisor daemon is run with this configuration file.
 
+## The Start script
+The Modulus run image standard requires there to be an executable somewhere in the PATH named `start`. This executable should not block and should redirect any logging to stdout. In most Modulus run images the start script does much more than simply run the customer application. For example in the [Node.js run image](https://github.com/onmodulus/docker-run-node) it is also responsible for reading the package.json and initilializing the correct version of Node.js.
+
+## Supervisor
+Modulus makes use of [Supervisor](http://supervisord.org/) for process monitoring. The base run image provides a common supervisor configuration file that loads an application specific configuration file from /mnt/supervisor.conf. Modulus generates this file as a way to provide arbitrary environment variables and redirect stdout to /mnt/log/app.log. It also provides log rotation and crash notifications. 
+
 ## Usage
-The Modulus base runtime image is used like any other image:
+The base run image is not meant to be run directly. It's designed to be inherited by an application specific image, for example the [Node.js run image](https://github.com/onmodulus/docker-run-node).
 
 ```
 FROM: onmodulus/image-run-base:1.0.0
@@ -34,3 +36,10 @@ FROM: onmodulus/image-run-base:1.0.0
 # the init system as the CMD.
 CMD ["/sbin/my_init"]
 ```
+
+# License
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
