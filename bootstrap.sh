@@ -31,6 +31,7 @@ chmod +x /etc/service/supervisor/run
 chmod +x /opt/modulus/bin/navi
 
 # Install ImageMagick
+export MAKEFLAGS="-j $(grep -c ^processor /proc/cpuinfo)"
 cd /opt
 wget http://www.imagemagick.org/download/ImageMagick.tar.gz
 tar -xf ImageMagick.tar.gz && mv ImageMagick-* ImageMagick && cd ImageMagick && ./configure && make && sudo make install
