@@ -1,4 +1,4 @@
-FROM onmodulus/docker-base
+FROM onmodulus/baseimage
 
 ADD . /opt/modulus
 
