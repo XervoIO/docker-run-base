@@ -22,13 +22,13 @@ The volume mounted at `/mnt` requires the follow subdirectories to be created by
 The Modulus run image standard requires there to be an executable somewhere in the PATH named `start`. This executable should not block and should redirect any logging to stdout. In most Modulus run images the start script does much more than simply run the customer application. For example in the [Node.js run image](https://github.com/onmodulus/docker-run-node) it is also responsible for reading the package.json and initilializing the correct version of Node.js.
 
 ## Supervisor
-Modulus makes use of [Supervisor](http://supervisord.org/) for process monitoring. The base run image provides a common supervisor configuration file that loads an application specific configuration file from /mnt/supervisor.conf. Modulus generates this file as a way to provide arbitrary environment variables and redirect stdout to /mnt/log/app.log. It also provides log rotation and crash notifications. 
+Modulus makes use of [Supervisor](http://supervisord.org/) for process monitoring. The base run image provides a common supervisor configuration file that loads an application specific configuration file from /mnt/supervisor.conf. Modulus generates this file as a way to provide arbitrary environment variables and redirect stdout to /mnt/log/app.log. It also provides log rotation and crash notifications.
 
 ## Usage
 The base run image is not meant to be run directly. It's designed to be inherited by an application specific image, for example the [Node.js run image](https://github.com/onmodulus/docker-run-node).
 
 ```
-FROM: onmodulus/docker-run-base:1.0.0
+FROM: onmodulus/run-base
 
 # Customizations
 
