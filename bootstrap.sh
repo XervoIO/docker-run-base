@@ -62,4 +62,4 @@ rm -rf phantomjs*
 
 # Clean stuff up that's no longer needed
 apt-get remove build-essential && apt-get purge build-essential
-apt-get autoclean && apt-get autoremove && apt-get clean
+apt-get autoclean && apt-get autoremove -y && apt-get clean
