@@ -12,7 +12,7 @@ apt-get update
 apt-get install -y supervisor python-setuptools build-essential \
   libmagickcore-dev libmagickwand-dev libjpeg8-dev libsqlite-dev \
   libexpat1 libexpat1-dev libicu-dev libpq-dev libcairo2-dev \
-  libpango1.0-dev libgif-dev libxml2-dev
+  libpango1.0-dev libgif-dev libxml2-dev ghostscript poppler-utils
 
 easy_install superlance
 
