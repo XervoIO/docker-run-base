@@ -37,6 +37,8 @@ export MAKEFLAGS="-j $(grep -c ^processor /proc/cpuinfo)"
 cd /opt
 wget http://www.imagemagick.org/download/ImageMagick.tar.gz
 tar -xf ImageMagick.tar.gz && mv ImageMagick-* ImageMagick && cd ImageMagick && ./configure && make && sudo make install
+# Disable coders that have known vulnerabilities in them
+sed -i '/<policymap>/a <policy domain="coder" rights="none" pattern="EPHEMERAL" />\n  <policy domain="coder" rights="none" pattern="URL" />\n  <policy domain="coder" rights="none" pattern="HTTPS" />\n  <policy domain="coder" rights="none" pattern="MVG" />\n  <policy domain="coder" rights="none" pattern="MSL" />\n  <policy domain="coder" rights="none" pattern="TEXT" />\n  <policy domain="coder" rights="none" pattern="SHOW" />\n  <policy domain="coder" rights="none" pattern="WIN" />\n  <policy domain="coder" rights="none" pattern="PLT" />\n' /usr/local/etc/ImageMagick-7/policy.xml
 ldconfig /usr/local/lib && rm -rf /opt/ImageMagick*
 
 # Install GraphicsMagick
