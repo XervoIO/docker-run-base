@@ -12,7 +12,9 @@ apt-get update
 apt-get install -y supervisor python-setuptools build-essential \
   libmagickcore-dev libmagickwand-dev libjpeg8-dev libsqlite-dev \
   libexpat1 libexpat1-dev libicu-dev libpq-dev libcairo2-dev \
-  libpango1.0-dev libgif-dev libxml2-dev
+  libpango1.0-dev libgif-dev libxml2-dev libkrb5-dev \
+  libunwind8 gettext libssl-dev libcurl4-openssl-dev zlib1g \
+  uuid-dev ghostscript poppler-utils
 
 easy_install superlance
 
@@ -35,6 +37,8 @@ export MAKEFLAGS="-j $(grep -c ^processor /proc/cpuinfo)"
 cd /opt
 wget http://www.imagemagick.org/download/ImageMagick.tar.gz
 tar -xf ImageMagick.tar.gz && mv ImageMagick-* ImageMagick && cd ImageMagick && ./configure && make && sudo make install
+# Disable coders that have known vulnerabilities in them
+sed -i '/<policymap>/a <policy domain="coder" rights="none" pattern="EPHEMERAL" />\n  <policy domain="coder" rights="none" pattern="URL" />\n  <policy domain="coder" rights="none" pattern="HTTPS" />\n  <policy domain="coder" rights="none" pattern="MVG" />\n  <policy domain="coder" rights="none" pattern="MSL" />\n  <policy domain="coder" rights="none" pattern="TEXT" />\n  <policy domain="coder" rights="none" pattern="SHOW" />\n  <policy domain="coder" rights="none" pattern="WIN" />\n  <policy domain="coder" rights="none" pattern="PLT" />\n' /usr/local/etc/ImageMagick-7/policy.xml
 ldconfig /usr/local/lib && rm -rf /opt/ImageMagick*
 
 # Install GraphicsMagick
