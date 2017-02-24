@@ -1,0 +1,29 @@
+{
+  "name": "@xervo/run-base",
+  "description": "The base Docker image for all Xervo runtime images.",
+  "version": "1.0.0",
+  "author": "Tangible Labs <create@hellotangible.com> (http://hellotangible.com/)",
+  "bugs": {
+    "url": "https://github.com/XervoIO/docker-run-base/issues"
+  },
+  "homepage": "https://github.com/XervoIO/docker-run-base#readme",
+  "keywords": [
+    "build",
+    "docker"
+  ],
+  "license": "Apache-2.0",
+  "main": "bootstrap.sh",
+  "maintainers": [
+    "Jack Boberg <jack@hellotangible.com>",
+    "Jeremiah Harlan <jeremiah@hellotangible.com>",
+    "Brandon Satrom <brandon@hellotangible.com>",
+    "Clark Sell <clark@hellotangible.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XervoIO/docker-run-base.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
